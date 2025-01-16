@@ -6,7 +6,7 @@ User::init();
 Cart::init();
 
 if (!User::isLoggedIn()) {
-    header('Location: pages/login.php');
+    header('Location: ../login');
     exit;
 }
 
@@ -27,6 +27,6 @@ $lastname = User::getLastname();
     <p>Username: <?php echo htmlspecialchars($username); ?></p>
     <p>Email: <?php echo htmlspecialchars(User::getEmail()); ?></p>
 
-    <a href="pages/logout.php">Logout</a>
+    <a href="../logout">Logout</a>
 </body>
 </html>

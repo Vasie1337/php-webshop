@@ -21,12 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
     
     if ($quantity > 0 && $quantity <= $product['stock']) {
         Cart::addItem(
-            $product['id'],
+            $product['product_id'],
             $product['name'],
             $product['price'],
             $quantity
         );
-        header('Location: product.php?product_id=' . $productId . '&added=1');
+
+        header('Location: index.php?product_id=' . $product['product_id'] . '&added=1');
         exit();
     }
 }

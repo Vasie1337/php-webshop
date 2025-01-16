@@ -26,6 +26,7 @@ class Cart
             self::$items[$productId]['quantity'] += $quantity;
         } else {
             self::$items[$productId] = [
+                'product_id' => $productId,
                 'name' => $productName,
                 'price' => $price,
                 'quantity' => $quantity

@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lastname = $_POST['lastname'];
 
     if (User::register($username, $password, $firstname, $lastname, $email)) {
-        header('Location: login.php');
+        header('Location: ../login');
         exit;
     } else {
         $error = 'Registration failed';

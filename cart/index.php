@@ -1,14 +1,21 @@
 <?php
 require_once '../models/cart.php';
+require_once '../utils/logger.php';
+
+Cart::init();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_item'])) {
     $productId = (int)$_POST['product_id'];
-    Cart::removeItem($productId);
-    header('Location: cart.php?removed=1');
+
+    if (!Cart::removeItem($productId))
+    {
+        header('Location: index.php?removed=0');
+        exit();
+    }
+
+    header('Location: index.php?removed=1');
     exit();
 }
-
-Cart::init();
 
 $cartItems = Cart::getItems();
 $cartTotal = Cart::getTotal();
@@ -75,19 +82,9 @@ $itemCount = Cart::getItemCount();
             </div>
 
             <p style="text-align: right;">
-                <a href="../index.php" class="continue-shopping">Continue Shopping</a>
+                <a href="../checkout" class="checkout-button">Proceed to Checkout</a>
             </p>
         <?php endif; ?>
     </div>
-
-    <script>
-        document.querySelectorAll('.remove-button').forEach(button => {
-            button.addEventListener('click', function(e) {
-                if (!confirm('Are you sure you want to remove this item from your cart?')) {
-                    e.preventDefault();
-                }
-            });
-        });
-    </script>
 </body>
 </html>
