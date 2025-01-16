@@ -25,9 +25,6 @@ include 'components/topbar.php';
                     <a href="./products" class="btn btn-primary btn-lg px-4 gap-3">
                         <i class="bi bi-grid me-2"></i>Browse Products
                     </a>
-                    <a href="./register" class="btn btn-outline-secondary btn-lg px-4">
-                        <i class="bi bi-person-plus me-2"></i>Create Account
-                    </a>
                 </div>
             </div>
         </div>

@@ -1,3 +1,12 @@
+<?php
+$rootDir = $_SERVER['DOCUMENT_ROOT'] . '/webshop';
+require_once $rootDir . '/models/user.php';
+
+User::init();
+
+$isLoggedIn = User::isLoggedIn();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +19,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand fw-bold", href="/webshop">
+            <a class="navbar-brand fw-bold" href="/webshop">
                 <i class="bi bi-shop me-2"></i>Enge Shop
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
@@ -25,25 +34,38 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/webshop/register">
-                            <i class="bi bi-person-plus me-1"></i>Register
+                        <a class="nav-link" href="/webshop/reviews">
+                            <i class="bi bi-chat-left-text me-1"></i>Reviews
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/webshop/login">
-                            <i class="bi bi-box-arrow-in-right me-1"></i>Login
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/webshop/logout">
-                            <i class="bi bi-box-arrow-left me-1"></i>Logout
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/webshop/cart">
-                            <i class="bi bi-cart me-1"></i>Cart
-                        </a>
-                    </li>
+                    <?php if (!$isLoggedIn): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/webshop/register">
+                                <i class="bi bi-person-plus me-1"></i>Register
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/webshop/login">
+                                <i class="bi bi-box-arrow-in-right me-1"></i>Login
+                            </a>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/webshop/orders">
+                                <i class="bi bi-list-ul me-1"></i>Orders
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/webshop/cart">
+                                <i class="bi bi-cart me-1"></i>Cart
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/webshop/logout">
+                                <i class="bi bi-box-arrow-left me-1"></i>Logout
+                            </a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>

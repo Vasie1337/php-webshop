@@ -73,6 +73,14 @@ class User
         }
     }
 
+    public static function getCurrentUser() {
+        self::init();
+        if (isset($_SESSION['user_id'])) {
+            return self::load($_SESSION['user_id']);
+        }
+        return false;
+    }
+
     public static function logout() {
         self::$username = null;
         self::$password = null;
