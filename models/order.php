@@ -28,12 +28,17 @@ class Order {
         ]);
     }
 
-    public function getOrdersByUser(int $userId): array {
+    public static function getOrdersByUser(int $userId): array {
         try {
+            if (!self::$db) {
+                self::$db = new PDO("mysql:host=localhost;dbname=webshop_db", "root", "");
+                self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            }
+
             $stmt = self::$db->prepare("
                 SELECT o.*, p.name as product_name 
                 FROM orders o
-                JOIN products p ON o.product_id = p.id
+                JOIN products p ON o.product_id = p.product_id
                 WHERE o.user_id = :user_id
                 ORDER BY o.order_date DESC
             ");
@@ -42,7 +47,7 @@ class Order {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             error_log("Error retrieving orders: " . $e->getMessage());
-            throw new Exception("Failed to retrieve orders");
+            throw new Exception("Error retrieving orders: " . $e->getMessage());
         }
     }
 }
