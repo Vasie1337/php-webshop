@@ -1,18 +1,17 @@
 <?php
 require_once '../models/product.php';
 require_once '../models/cart.php';
+require_once '../utils/logger.php';
 
 if (!isset($_GET['product_id']) || !is_numeric($_GET['product_id'])) {
-    header('Location: ../index.php');
-    exit();
+    debug_to_console("Invalid product ID");
 }
 
 $productId = (int)$_GET['product_id'];
 $product = Product::getProductById($productId);
 
 if (!$product) {
-    header('Location: ../index.php');
-    exit();
+    debug_to_console("Product not found");
 }
 
 Cart::init();
@@ -44,7 +43,7 @@ $addedToCart = isset($_GET['added']) && $_GET['added'] == 1;
 </head>
 <body>
     <div class="product-container">
-        <a href="../index.php" class="back-link">← Back to Products</a>
+        <a href="../products" class="back-link">← Back to Products</a>
         
         <?php if ($addedToCart): ?>
             <div class="success-message">
