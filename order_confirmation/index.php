@@ -1,3 +1,7 @@
+<?php
+include '../components/topbar.php';
+?>
+
 <DOCTYPE html>
 <html lang="en">
 <head>

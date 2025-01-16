@@ -1,3 +1,7 @@
+<?php
+include 'components/topbar.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,17 +11,6 @@
     
 </head>
 <body>
-    <nav class="topbar">
-        <div class="nav-container">
-            <a href="./" class="logo">Enge Shop</a>
-            <ul class="nav-links">
-                <li><a href="./products">Products</a></li>
-                <li><a href="./register">Register</a></li>
-                <li><a href="./login">Login</a></li>
-                <li><a href="./logout">Logout</a></li>
-                <li><a href="./cart">Cart</li>
-            </ul>
-        </div>
-    </nav>
+    <h1>Welkom bij de enge webshop!</h1>
 </body>
 </html>

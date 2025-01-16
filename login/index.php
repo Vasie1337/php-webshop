@@ -1,4 +1,6 @@
 <?php
+include '../components/topbar.php';
+
 require_once '../models/user.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

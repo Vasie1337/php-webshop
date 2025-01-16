@@ -1,4 +1,6 @@
 <?php
+include '../components/topbar.php';
+
 require_once 'models/user.php';
 require_once 'models/cart.php';
 

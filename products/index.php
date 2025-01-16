@@ -1,4 +1,6 @@
 <?php
+include '../components/topbar.php';
+
 require_once '../models/product.php';
 
 $products = Product::getAllProducts();
