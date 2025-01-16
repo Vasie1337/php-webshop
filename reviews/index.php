@@ -8,7 +8,7 @@ User::init();
 Review::init();
 
 if (isset($_POST['place_review'])) {
-    $stars = min(5, max(1, intval($_POST['stars']))); // Ensure stars are between 1 and 5
+    $stars = min(5, max(1, intval($_POST['stars'])));
     $comment = $_POST['comment'];
     $username = $_SESSION['username'];
 
